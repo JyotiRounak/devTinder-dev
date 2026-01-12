@@ -1,19 +1,29 @@
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser} from '../utils/userSlice';
+import { useNavigate } from "react-router";
+import {BASE_URL} from '../utils/constant';
 
 const Login = () => {
- const[emailId, setEmailId] = useState("");
- const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+ const navigate = useNavigate();
+ const[emailId, setEmailId] = useState("Simran@gmail.com");
+ const [password, setPassword] = useState("Simran@123");
+ const [error, setError] = useState("");
+
 
  const handleLogin = async()=>{
     try{
-        axios.post("http://localhost:3000/login", {
+      const response =  await axios.post(`${BASE_URL}login`, {
         emailId,
         password
      }, {withCredentials: true});
+     dispatch(addUser(response.data));
+     navigate("/")
     }
-    catch(err){
-        console.log("Error:"+ err)
+    catch(error: any){
+        setError(error.response?.data || "Something went wrong")
     }
  }
   return (
@@ -34,12 +44,14 @@ const Login = () => {
   <div className="label">
     <span className="label-text">password</span>
   </div>
-  <input type="text" className="input" 
+  <input type="password" className="input" 
   value={password}
   onChange={(e)=> setPassword(e.target.value)}
   />
 </label>
             </div>
+           {error && <p className="text-red-300">{error}</p>}
+  
             <div className="card-actions justify-center">
             <button className="btn btn-primary" onClick={handleLogin}>Login</button>
             </div>
