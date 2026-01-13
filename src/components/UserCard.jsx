@@ -1,7 +1,21 @@
-
-const UserCard = ({ user }: any) => {
+import axios from "axios";
+import { BASE_URL} from '../utils/constant';
+import { useDispatch, useSelector } from "react-redux";
+import { removeFeed } from "../utils/feedSlice";
+const UserCard = ({ user }) => {
+  const dispatch = useDispatch();
   if (!user) return null;
-  const { firstName, lastName, gender, age, photoUrl, about} = user;
+  const { _id, firstName, lastName, gender, age, photoUrl, about} = user;
+
+  const handleSendRequest = async(status, userId)=>{
+    try {
+      await axios.post(`${BASE_URL}request/send/${status}/${userId}`, {}, { withCredentials: true});
+      dispatch(removeFeed(userId));
+    } 
+    catch (error) {
+      console.warn(error);
+    }
+  }
 
   return (
     <div className="card bg-base-100 w-96 shadow-xl hover:shadow-2xl transition-shadow">
@@ -24,7 +38,7 @@ const UserCard = ({ user }: any) => {
       </figure>
       
       <div className="card-actions justify-center gap-4 p-6">
-        <button className="btn btn-circle btn-lg btn-outline">
+        <button className="btn btn-circle btn-lg btn-outline" onClick={()=>handleSendRequest("ignored", _id)}>
           <svg
             className="w-6 h-6"
             fill="none"
@@ -40,7 +54,7 @@ const UserCard = ({ user }: any) => {
           </svg>
         </button>
 
-        <button className="btn btn-circle btn-lg btn-primary">
+        <button className="btn btn-circle btn-lg btn-primary" onClick={()=>handleSendRequest("interested", _id)}>
           <svg
             className="w-6 h-6"
             fill="currentColor"

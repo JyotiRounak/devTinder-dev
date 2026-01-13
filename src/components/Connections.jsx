@@ -7,6 +7,8 @@ import { useEffect } from "react";
 const Connections = () => {
   const connections = useSelector((store)=> store.connection);
   const dispatch = useDispatch();
+
+  
   const fetchConnection = async()=>{
     try {
     const response = await axios.get(`${BASE_URL}user/connections`, {withCredentials: true});

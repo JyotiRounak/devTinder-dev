@@ -17,7 +17,7 @@ export const Dashboard = () => {
       const response = await axios.get(`${BASE_URL}profile/view`, { withCredentials: true});
       dispatch(addUser(response.data));
     } catch (error) {
-      if(error.status === 401){
+      if(error.response?.status === 401){
         navigate("/login")
       }
       console.error(error);
@@ -25,7 +25,7 @@ export const Dashboard = () => {
   }
   useEffect(()=>{
     fetchusers();
-  }, []);
+  }, [userData]);
   return (
     <>
     <Navbar/>

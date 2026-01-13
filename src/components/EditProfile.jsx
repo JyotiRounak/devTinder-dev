@@ -19,7 +19,7 @@ const EditProfile = ({user}) => {
 });
 
   
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void=>{
+  const changeHandler = (event)=>{
     const { value, name} = event.target;
     setFormData((prev)=>({
       ...prev,
@@ -28,7 +28,7 @@ const EditProfile = ({user}) => {
   }
   
   const { firstName, lastName, age, skills, about, photoUrl} = formData;
-  const saveProfile = async(e: React.FormEvent)=>{
+  const saveProfile = async(e)=>{
     e.preventDefault();
     setError("");
     try {
@@ -37,7 +37,7 @@ const EditProfile = ({user}) => {
         });
       dispatch(addUser(response?.data.data));
 
-    } catch (error: any) {
+    } catch (error) {
       setError(error.response?.data.message)
     }
        
