@@ -22,23 +22,29 @@ const Navbar = () =>{
     }
     return (
         <>
-        <div className="navbar bg-base-300 shadow-sm">
+        <div className="navbar bg-base-100/80 backdrop-blur-md shadow-md sticky top-0 z-50">
   <div className="flex-1">
-    <Link to="/" className="btn btn-ghost text-xl">👩🏻‍💻 DevTinder</Link>
+    <Link to="/" className="flex items-center gap-2 text-xl font-bold text-pink-500">
+  <span className="text-2xl">👩🏻‍💻</span> DevTinder
+</Link>
   </div>
   {user && (<div className="flex gap-2">
     <div className="dropdown dropdown-end mx-5 flex item-center">
-      <p className="px-4">Welcome, {user?.firstName} </p>
+      <div className="hidden sm:block text-right mr-2">
+  <p className="text-sm text-gray-500">Welcome</p>
+  <p className="font-semibold">{user?.firstName}</p>
+</div>
+
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
+        <div className="w-10 rounded-full ring-2 ring-pink-400">
           <img
-            alt={user.firName}
+            alt={user.firtName}
             src={user.photoUrl}/>
         </div>
       </div>
       <ul
        // tabIndex="-1"
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        className="menu menu-sm dropdown-content mt-3 w-52 rounded-xl bg-white shadow-lg border border-gray-100">
         <li>
           <Link to="/profile" className="justify-between">
             Profile
@@ -47,7 +53,11 @@ const Navbar = () =>{
         </li>
         <li><Link to="/connections">Connections</Link></li>
         <li><Link to="/requests">Requests</Link></li>
-        <li><Link to="/" onClick={logoutHandler}>Logout</Link></li>
+        <li>
+  <button onClick={logoutHandler} className="text-red-500 hover:bg-red-50">
+    Logout
+  </button>
+</li>
       </ul>
     </div>
   </div>)}

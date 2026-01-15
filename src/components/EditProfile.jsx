@@ -8,6 +8,7 @@ import {addUser} from '../utils/userSlice';
 const EditProfile = ({user}) => {
   const dispatch = useDispatch();
   const[error, setError] = useState("");
+  const[editPage, setEditPage] = useState(true);
   const [formData, setFormData] = useState({
   firstName: user.firstName || "",
   lastName: user.lastName || "",
@@ -139,7 +140,7 @@ const EditProfile = ({user}) => {
         </div>
       </div>
     </div>
-    <UserCard user={{firstName, lastName, age, about, skills, photoUrl}}/>
+    <UserCard user={{firstName, lastName, age, about, skills, photoUrl}} editPage={editPage}/>
     </div>
   )
 }
