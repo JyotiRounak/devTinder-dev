@@ -53,6 +53,7 @@ const Navbar = () =>{
         </li>
         <li><Link to="/connections">Connections</Link></li>
         <li><Link to="/requests">Requests</Link></li>
+        <li><Link to="/premium">Premium Plan </Link></li>
         <li>
   <button onClick={logoutHandler} className="text-red-500 hover:bg-red-50">
     Logout
