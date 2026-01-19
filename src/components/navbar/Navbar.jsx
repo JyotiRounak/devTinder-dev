@@ -25,7 +25,7 @@ const Navbar = () =>{
         <div className="navbar bg-base-100/80 backdrop-blur-md shadow-md sticky top-0 z-50">
   <div className="flex-1">
     <Link to="/" className="flex items-center gap-2 text-xl font-bold text-pink-500">
-  <span className="text-2xl">👩🏻‍💻</span> DevTinder
+  <span className="text-2xl">👩🏻‍💻</span> DevConnect
 </Link>
   </div>
   {user && (<div className="flex gap-2">

@@ -20,6 +20,7 @@ const Feed = () => {
   useEffect(()=>{
     feedHandler();
   }, []);
+  
   if(!feed) return;
   if(feed.length <= 0) return <p>No new User found</p>;
   return (

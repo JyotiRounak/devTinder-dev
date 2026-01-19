@@ -3,6 +3,7 @@ import { BASE_URL} from '../utils/constant';
 import { useDispatch, useSelector } from "react-redux";
 import {getConnection} from '../utils/connectionSlice';
 import { useEffect } from "react";
+import { Link } from "react-router";
 
 const Connections = () => {
   const connections = useSelector((store)=> store.connection);
@@ -27,7 +28,7 @@ const Connections = () => {
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 py-10 px-6">
 
   <h1 className="text-4xl font-extrabold mb-10 text-center text-gray-800">
-  💞 My Connections
+  👩🏻‍💻 My Connections
 </h1>
 
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-5xl">
@@ -68,6 +69,16 @@ const Connections = () => {
             </div>
           )}
         </div>
+        <Link to={/chat/+ connection._id}>
+        <button class="btn btn-primary btn-circle fixed bottom-6 right-6 shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.8L3 20l1.2-3.6A7.7 7.7 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </button>
+        </Link>
+
       </div>
     ))}
   </div>

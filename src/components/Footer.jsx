@@ -2,9 +2,9 @@ const Footer = () => {
   return (
     <footer className="footer sm:footer-horizontal bg-base-100/80 backdrop-blur-md text-gray-600 items-center p-4 fixed bottom-0 w-full border-t border-gray-200">
   <aside className="flex items-center gap-3">
-  <span className="text-2xl">💘</span>
+  <span className="text-2xl">👩🏻‍💻</span>
   <p className="font-semibold text-gray-700">
-    DevTinder © {new Date().getFullYear()}
+    DevConnect © {new Date().getFullYear()}
   </p>
   </aside>
   <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">

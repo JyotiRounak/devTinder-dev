@@ -48,7 +48,7 @@ const Login = () => {
         <div className="card-body">
             <div className="flex flex-col items-center mb-4">
   <h1 className="text-3xl font-extrabold text-pink-500 tracking-wide">
-    DevTinder
+    DevConnect
   </h1>
   <p className="text-sm text-gray-500">
     {isLogInForm ? "Welcome back 👋" : "Create your account"}

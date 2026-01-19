@@ -30,7 +30,7 @@ const Requests = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 py-10 px-6 flex flex-col items-center">
   <h1 className="text-4xl font-extrabold mb-10 text-gray-800">
-  💌 Connection Requests
+  👩🏻‍💻 Connection Requests
 </h1>
 
 

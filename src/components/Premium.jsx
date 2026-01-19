@@ -38,7 +38,7 @@ const Premium = () => {
     <div className="min-h-screen bg-base-200 flex flex-col items-center py-10">
       {/* Header */}
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold">DevTinder Premium</h1>
+        <h1 className="text-4xl font-bold">DevConnect Premium</h1>
         <p className="text-base-content/70 mt-2">
           Match smarter. Connect faster. Build better dev relationships.
         </p>
