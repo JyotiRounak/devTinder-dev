@@ -6,6 +6,6 @@ export const creatSocketConnection = ()=>{
         return io(BASE_URL);
     }
     else{
-    return io("/", {path: /api/socket.io});
+    return io("/", {path:"/api/socket.i0"})
     }
 }
