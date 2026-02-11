@@ -1,65 +1,71 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router';
-import { creatSocketConnection} from '../utils/socket';
-import axios from 'axios';
-import {BASE_URL} from "../utils/constant";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { creatSocketConnection } from "../utils/socket";
+import axios from "axios";
+import { BASE_URL } from "../utils/constant";
 
 const Chat = () => {
-  const {targetUserId} = useParams();
-  const user = useSelector((store)=> store.user)
-  const[messages, setMessages] = useState([]);
-  const[newMessages, setNewMessages] = useState("");
+  const { targetUserId } = useParams();
+  const user = useSelector((store) => store.user);
+  const [messages, setMessages] = useState([]);
+  const [newMessages, setNewMessages] = useState("");
   const userId = user?._id;
 
-  const fetchChatMessages = async()=>{
-    const chat = await axios.get(`${BASE_URL}chat/${targetUserId}`, { withCredentials: true});
-    const chatMessages = chat?.data?.messages?.map((msg)=>{
-    const {senderId, text} = msg;
-    return { 
-      firstName: senderId.firstName,
-      lastName: senderId.lastName,
-      text
-    }
+  const fetchChatMessages = async () => {
+    const chat = await axios.post(`${BASE_URL}chat/${targetUserId}`, {
+      withCredentials: true,
+    });
+    const chatMessages = chat?.data?.messages?.map((msg) => {
+      const { senderId, text } = msg;
+      return {
+        firstName: senderId.firstName,
+        lastName: senderId.lastName,
+        text,
+      };
     });
     setMessages(chatMessages);
+  };
 
-  }
-
-  useEffect(()=>{
+  useEffect(() => {
     console.log("Fetching chat history...");
     fetchChatMessages();
   }, []);
 
-  useEffect(()=>{
-    if(!userId) return;
+  useEffect(() => {
+    if (!userId) return;
     const socket = creatSocketConnection();
     // as soon as page loaded, socket connection is made and joinChat event is emitted
-    socket.emit("joinChat", {firstName: user.firstName, userId, targetUserId});
-
-    socket.on("messageReceived", ({firstName, lastName, text})=>{
-    console.log(text);
-    setMessages((prev) => [...prev, {firstName, lastName, text}])
+    socket.emit("joinChat", {
+      firstName: user.firstName,
+      userId,
+      targetUserId,
     });
 
-    return ()=>{
-        socket.disconnect();
-    }
+    socket.on("messageReceived", ({ firstName, lastName, text }) => {
+      console.log(text);
+      setMessages((prev) => [...prev, { firstName, lastName, text }]);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, [userId, targetUserId]);
 
-  const sendMessagehandler = ()=>{
-    if(!newMessages.trim()) return;
+  const sendMessagehandler = () => {
+    if (!newMessages.trim()) return;
     const socket = creatSocketConnection();
-    socket.emit("sendMessage", 
-        {firstName: user.firstName,
-          lastName: user.lastName,
-             userId, 
-             targetUserId, 
-             text: newMessages });
+    socket.emit("sendMessage", {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      userId,
+      targetUserId,
+      text: newMessages,
+    });
     setNewMessages("");
-  }
+  };
   return (
-     <div className="w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col">
+    <div className="w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col">
       <h1 className="p-5 border-b border-gray-600">Chat</h1>
       <div className="flex-1 overflow-scroll p-5">
         {messages.map((msg, index) => {
@@ -95,8 +101,7 @@ const Chat = () => {
         </button>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Chat
+export default Chat;

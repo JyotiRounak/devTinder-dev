@@ -1,39 +1,40 @@
 import axios from "axios";
-import {BASE_URL} from '../utils/constant';
+import { BASE_URL } from "../utils/constant";
 
 const Premium = () => {
- const handlePayment = async(type)=>{
-    try{
-    const order = await axios.post(`${BASE_URL}payment/create`, { membershipType: type }, { withCredentials: true});
+  const handlePayment = async (type) => {
+    try {
+      const order = await axios.post(
+        `${BASE_URL}payment/create`,
+        { membershipType: type },
+        { withCredentials: true },
+      );
 
-    const {amount, keyId, currency, notes, orderId} = order.data
+      const { amount, keyId, currency, notes, orderId } = order.data;
 
-    // It should open the razor pay dialog box
-    const options = {
-      "key": keyId, // Enter the Key ID generated from the Dashboard
-      amount, // Amount is in currency subunits. 
-      currency,
-      "name": "Dev Tinder",
-      "description": "Connect to other developers",
-      "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      prefill: {
-        name: notes.firstName + " " +  notes.lastName,
-        email: notes.emailId,
-        contact: '9999999999'
-      },
-      "theme": {
-          "color": "#3399cc"
-      }
-  };
-    const rzp = new window.Razorpay(options);
+      // It should open the razor pay dialog box
+      const options = {
+        key: keyId, // Enter the Key ID generated from the Dashboard
+        amount, // Amount is in currency subunits.
+        currency,
+        name: "Dev Tinder",
+        description: "Connect to other developers",
+        order_id: orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        prefill: {
+          name: notes.firstName + " " + notes.lastName,
+          email: notes.emailId,
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+      const rzp = new window.Razorpay(options);
       rzp.open();
-
+    } catch (error) {
+      console.warn(error);
     }
-    catch(error){
-        console.warn(error);
-    }
-
- }
+  };
   return (
     <div className="min-h-screen bg-base-200 flex flex-col items-center py-10">
       {/* Header */}
@@ -86,7 +87,10 @@ const Premium = () => {
             </ul>
 
             <div className="card-actions mt-6">
-              <button className="btn btn-primary w-full" onClick={()=> handlePayment("premium")}>
+              <button
+                className="btn btn-primary w-full"
+                onClick={() => handlePayment("premium")}
+              >
                 Upgrade to Premium
               </button>
             </div>
@@ -108,7 +112,10 @@ const Premium = () => {
             </ul>
 
             <div className="card-actions mt-6">
-              <button className="btn btn-secondary w-full" onClick={()=> handlePayment("pro")}>
+              <button
+                className="btn btn-secondary w-full"
+                onClick={() => handlePayment("pro")}
+              >
                 Go Pro
               </button>
             </div>

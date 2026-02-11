@@ -1,49 +1,73 @@
+import { Link } from "react-router";
+import { BsGithub, BsTwitter, BsLinkedin, BsInstagram, BsHeartFill } from 'react-icons/bs'
+
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal bg-base-100/80 backdrop-blur-md text-gray-600 items-center p-4 fixed bottom-0 w-full border-t border-gray-200">
-  <aside className="flex items-center gap-3">
-  <span className="text-2xl">👩🏻‍💻</span>
-  <p className="font-semibold text-gray-700">
-    DevConnect © {new Date().getFullYear()}
-  </p>
-  </aside>
-  <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        className="fill-gray-400 hover:fill-pink-500 transition">
-        <path
-          d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-      </svg>
-    </a>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        className="fill-gray-400 hover:fill-pink-500 transition">
-        <path
-          d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-      </svg>
-    </a>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        className="fill-gray-400 hover:fill-pink-500 transition">
-        <path
-          d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-      </svg>
-    </a>
-  </nav>
-</footer>
-  )
-}
+    <footer className="bg-base-300 text-base-content pt-10 pb-6 mt-auto">
+            <div className="max-w-7xl mx-auto px-4">
 
-export default Footer
+                {/* Responsive Grid: 
+                   - Mobile: 1 Column
+                   - Small Tablet (sm): 2 Columns
+                   - Laptop (md): 4 Columns
+                */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+
+                    {/* Brand Section - Spans 2 columns on tablet/desktop, 1 on mobile */}
+                    <aside className="col-span-1 sm:col-span-2">
+                        <Link to="/" className="text-2xl font-black tracking-tight flex items-center gap-2">
+                            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                                Dev-Connect
+                            </span>
+                            <span className="text-xl">🚀</span>
+                        </Link>
+                        <p className="mt-4 text-gray-500 max-w-xs leading-relaxed">
+                            Match, Chat, and Code. The ultimate platform for developers to connect, collaborate, and build the future together.
+                        </p>
+                    </aside>
+
+                    {/* Links Column 1 */}
+                    <nav className="flex flex-col gap-2">
+                        <h6 className="footer-title opacity-100 text-primary uppercase tracking-wider">Services</h6>
+                        <Link to="/premiumList" className="link link-hover hover:text-primary transition-colors text-sm">Premium Plans</Link>
+                        <Link to="/ai-coach" className="link link-hover hover:text-primary transition-colors text-sm">AI Career Coach</Link>
+                        <Link to="/feed" className="link link-hover hover:text-primary transition-colors text-sm">Find Developers</Link>
+                        <Link to="/connections" className="link link-hover hover:text-primary transition-colors text-sm">Success Stories</Link>
+                    </nav>
+
+                    {/* Links Column 2 */}
+                    <nav className="flex flex-col gap-2">
+                        <h6 className="footer-title opacity-100 text-primary uppercase tracking-wider">Company</h6>
+                        <Link to="/#" className="link link-hover hover:text-primary transition-colors text-sm">About us</Link>
+                        <Link to="/#" className="link link-hover hover:text-primary transition-colors text-sm">Contact</Link>
+                        <Link to="/#" className="link link-hover hover:text-primary transition-colors text-sm">Privacy Policy</Link>
+                        <Link to="/#" className="link link-hover hover:text-primary transition-colors text-sm">Terms of Use</Link>
+                    </nav>
+                </div>
+
+                {/* Divider */}
+                <div className="divider my-0"></div>
+
+                {/* Bottom Section - Stack on Mobile, Row on Desktop */}
+                <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-4 py-6">
+                    <aside className="text-center md:text-left">
+                        <p className="flex items-center gap-1 text-sm font-medium text-gray-500">
+                            Built with 
+                            <BsHeartFill className="text-error animate-pulse" /> 
+                            in India © {new Date().getFullYear()} - Dev-Tinder
+                        </p>
+                    </aside>
+
+                    <nav className="flex gap-6">
+                        <a href="#" rel="noreferrer" className="text-2xl text-gray-500 hover:text-black hover:-translate-y-1 transition-all duration-300 cursor-pointer"><BsGithub /></a>
+                        <a href="#" rel="noreferrer" className="text-2xl text-gray-500 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer"><BsTwitter /></a>
+                        <a href="#" rel="noreferrer" className="text-2xl text-gray-500 hover:text-blue-600 hover:-translate-y-1 transition-all duration-300 cursor-pointer"><BsLinkedin /></a>
+                        <a href="#" rel="noreferrer" className="text-2xl text-gray-500 hover:text-pink-500 hover:-translate-y-1 transition-all duration-300 cursor-pointer"><BsInstagram /></a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+  );
+};
+
+export default Footer;
